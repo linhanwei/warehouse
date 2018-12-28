@@ -15,7 +15,7 @@ class Error extends Base
     //如果没有就跳转到登录页面
     protected function _initialize()
     {
-        parent::_initialize();
+        parent::initialize();
     }
 
     public function index()
