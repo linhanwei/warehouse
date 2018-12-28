@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>第一平台</title><meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/admin/css/bootstrap.min14ed.css" />
+    <!--<link rel="stylesheet" href="/static/admin/css/bootstrap-responsive.min.css" />-->
+    <link href="/static/admin/css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+    <link rel="stylesheet" href="/static/admin/css/login.css" />
+    <style>
+        .Validform_wrong{
+            display: block;
+            text-align: left;
+            margin-left: 49px;
+            color: #a51616;
+        }
+    </style>
+</head>
+<body>
+<div id="loginbox">
+    <form id="loginform" novalidate="novalidate" class="form-horizontal" method="post"  action="<{:url('login/login')}>">
+        <{:token()}>
+        <input type="hidden" name="step" value=1 />
+        <div class="control-group normal_text"><h3>__MANAGE_PLATFORM__</h3></div>
+
+        <div class="control-group">
+            <div class="controls">
+                <div class="main_input_box">
+                    <span class="add-on bg_lg"><i class="fa fa-user"></i></span><input type="text" name="username" value="" placeholder="请输入账号" datatype="*5-16" nullmsg="请输入账号"/>
+                </div>
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                <div class="main_input_box">
+                    <span class="add-on bg_ly"><i class="fa fa-lock"></i></span><input type="password" name="password" value="" placeholder="请输入密码" datatype="*5-16" nullmsg="请输入密码"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="control-group hide" id="error_msg">
+            <div class="controls">
+                <div class="main_input_box">
+                    <div class="login-error">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-actions">
+            <span class="pull-left"><button type="reset" class="flip-link btn btn-info" id="to-recover">重置</button></span>
+            <span class="pull-right"><button type="submit" class="btn btn-success">登录</button></span>
+        </div>
+    </form>
+</div>
+    <script src="/static/admin/js/jquery.min.js" type="text/javascript" ></script>
+    <script src="/static/admin/js/bootstrap.min.js?v=3.3.6" type="text/javascript" ></script>
+    <script src="/static/admin/js/validform.js" type="text/javascript" ></script>
+    <script src="/static/admin/js/main.js" type="text/javascript" ></script>
+    <script src="/static/admin/js/newvalidform.js" type="text/javascript" ></script>
+    <script>
+        $(function () {
+
+            /*
+            $(".btn-success").click(function () {
+                var username = $('[ name="username"]').val(),
+                     password = $('[name="password"]').val(),
+                    __token__ = $('[name="__token__"]').val();
+
+                $.post('./login/login',{username:username,password:password,__token__:__token__},function (data) {
+                    if(data.status == 0)
+                    {
+                        $('#error_msg').removeClass('hide');
+                        $('#error_msg .login-error').html(data.msg);
+                    }
+                    else
+                    {
+                        $('#error_msg').addClass('hide');
+                        location.href = './index/index';
+                    }
+                });
+                return false;
+            });
+            */
+        });
+    </script>
+</body>
+
+</html>

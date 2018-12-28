@@ -1,0 +1,72 @@
+﻿{extend name="public/base" /}
+{block name="main"}
+    <div class="row">
+        <div class="btn-outline-wrap">
+            {if condition="in_array('admin/WechatConfig/add', $adminAuthList)"}
+                <a href="<{:url('wechat_config/add')}>" class="btn btn-outline btn-info "><i class="fa fa-plus-circle"></i>公众号配置添加</a>
+            {/if}
+        </div>
+        <form class="form-inline" action="" method="GET">
+            <div class="form-group">
+                <select name="field" class="form-control">
+                    <option value="">请选择</option>
+                    {volist name="field_list" id="field"}
+                        <option value="<{$key}>" {if condition="$key eq $Think.get.field"}selected{/if} ><{$field}></option>
+                    {/volist}
+                </select>
+            </div>
+            <div class="form-group">
+                <input type='text' name='keyword' style='width:200px;' class='form-control' value="<{$Think.get.keyword}>" placeholder="请输入搜索数据" />
+                <button type="submit" class="btn btn-white">搜索</button>
+            </div>
+        </form>
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>公众号名称</th>
+                    <th>公司名称</th>
+                    <th>AppID</th>
+                    <th>AppSecret</th>
+                    <th>Token</th>
+                    <th>EncodingAESKey</th>
+                    <th>消息加解密方式</th>
+                    <th>修改时间</th>
+                    <th>添加时间</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {if condition="empty($list->isEmpty())"}
+                    {volist name='list' id='config'}
+                        <tr>
+                            <td><{$config.app_name}></td>
+                            <td><{$config.company_name}></td>
+                            <td><{$config.app_id}></td>
+                            <td><{$config.app_secret}></td>
+                            <td><{$config.token}></td>
+                            <td><{$config.encoding_aes_key}></td>
+                            <td><{$config.decrypt_type_name}></td>
+                            <td class="text-center"><{$config.update_time}></td>
+                            <td class="text-center"><{$config.create_time}></td>
+                            <td class="text-center">
+                                {if condition="in_array('admin/WechatConfig/show', $adminAuthList)"}
+                                    <a href="<{:url('wechat_config/show')}>?id=<{$config.id}>" class="btn btn-info btn-xs"><i class="fa fa-search"></i>查看</a>
+                                {/if}
+                            </td>
+                        </tr>
+                    {/volist}
+                    {if condition="$list->render()"}
+                        <tr>
+                            <td colspan="20"><{$list->render()}></td>
+                        </tr>
+                    {/if}
+                {else /}
+                    <tr>
+                        <td colspan="20" class="text-center">没有数据！</td>
+                    </tr>
+                {/if}
+            </tbody>
+        </table>
+
+    </div>
+{/block}

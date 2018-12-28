@@ -1,0 +1,61 @@
+﻿{extend name="public/base" /}
+{block name="main"}
+    <div class="row">
+        <div class="btn-outline-wrap">
+            {if condition="in_array('admin/Statistics/record', $adminAuthList)"}
+                <a href="<{:url('statistics/record')}>" class="btn btn-outline btn-info "><i class="fa fa-plus-circle"></i>商品添加</a>
+            {/if}
+        </div>
+       <!-- <form class="form-inline" action="" method="GET">
+            <div class="form-group">
+                <select name="field" class="form-control">
+                    <option value="">请选择</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type='text' name='keyword' style='width:200px;' class='form-control' value="<{$Think.get.keyword}>" placeholder="请输入搜索数据" />
+                <button type="submit" class="btn btn-white">搜索</button>
+            </div>
+        </form>-->
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>查询时间</th>
+                    <th>查询方式</th>
+                    <th>查询结果</th>
+                    <th>防伪条码</th>
+                    <th>地区</th>
+                    <th>经纬度</th>
+                    <th>查询IP</th>
+                </tr>
+            </thead>
+            <tbody>
+                {if condition="empty($list->isEmpty())"}
+                    {volist name='list' id='record'}
+                        <tr>
+                            <td class="text-center"><{$record.id}></td>
+                            <td class="text-center"><{$record.create_time}></td>
+                            <td class="text-center"><{$record.query_type_name}></td>
+                            <td class="text-center"><{$record.query_result_name}></td>
+                            <td class="text-center"><{$record.code}></td>
+                            <td class="text-center"><{$record.area}></td>
+                            <td class="text-center"><{$record.latitude_and_longitude}></td>
+                            <td class="text-center"><{$record.scan_ip}></td>
+                        </tr>
+                    {/volist}
+                    {if condition="$list->render()"}
+                        <tr>
+                            <td colspan="8"><{$list->render()}></td>
+                        </tr>
+                    {/if}
+                {else /}
+                    <tr>
+                        <td colspan="8" class="text-center">没有数据！</td>
+                    </tr>
+                {/if}
+            </tbody>
+        </table>
+
+    </div>
+{/block}

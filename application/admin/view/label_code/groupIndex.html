@@ -1,0 +1,78 @@
+﻿{extend name="public/base" /}
+{block name="main"}
+    <div class="row">
+        <div class="btn-outline-wrap">
+            {if condition="in_array('admin/LabelCode/add', $adminAuthList)"}
+                <a href="<{:url('label_code/add')}>" class="btn btn-outline btn-info "><i class="fa fa-plus-circle"></i>条形码添加</a>
+            {/if}
+        </div>
+        <form class="form-inline" action="" method="GET">
+            <div class="form-group">
+                <select name="field" class="form-control">
+                    <option value="">请选择</option>
+                    {volist name="field_list" id="field"}
+                        <option value="<{$key}>" {if condition="$key eq $Think.get.field"}selected{/if} ><{$field}></option>
+                    {/volist}
+                </select>
+            </div>
+            <div class="form-group">
+                <input type='text' name='keyword' style='width:200px;' class='form-control' value="<{$Think.get.keyword}>" placeholder="请输入搜索数据" />
+                <button type="submit" class="btn btn-white">搜索</button>
+            </div>
+        </form>
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>公司</th>
+                    <th>数量</th>
+                    <th>是否已导出</th>
+                    <th>修改时间</th>
+                    <th>添加时间</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {if condition="empty($list->isEmpty())"}
+                    {volist name='list' id='group'}
+                        <tr>
+                            <td class="text-center"><{$group.id}></td>
+                            <td><{$group.company_name}></td>
+                            <td class="text-center"><{$group.code_count}></td>
+                            <td class="text-center"><{$group.is_export_name}></td>
+                            <td class="text-center"><{$group.update_time}></td>
+                            <td class="text-center"><{$group.create_time}></td>
+                            <td class="text-center">
+                                {if condition="in_array('admin/LabelCode/index', $adminAuthList)"}
+                                    <a href="javascript:;" data-href="<{:url('label_code/index')}>?group_id=<{$group.id}>" class="btn btn-primary btn-xs open-new-href"><i class="fa fa-list"></i>查看</a>
+                                {/if}
+                                {if condition="in_array('admin/LabelCode/exportCode', $adminAuthList)"}
+                                    <a href="<{:url('label_code/exportCode')}>?group_id=<{$group.id}>" class="btn btn-dark btn-xs"><i class="fa fa-file-text"></i>导出</a>
+                                {/if}
+                                <!--{if condition="in_array('admin/LabelCode/edit', $adminAuthList)"}-->
+                                    <!--<a href="<{:url('label_code/edit')}>?id=<{$group.id}>" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i>修改</a>-->
+                                <!--{/if}-->
+                                <!--{if condition="in_array('admin/LabelCode/del', $adminAuthList)"}-->
+                                    <!--<a data-href="<{:url('label_code/del')}>?id=<{$group.id}>" class="btn btn-danger btn-xs" onclick="plt.confirmAction(event)" data-title="确认删除"><i class="fa fa-trash-o"></i>删除</a>-->
+                                <!--{/if}-->
+                            </td>
+                        </tr>
+                    {/volist}
+                    {if condition="$list->render()"}
+                        <tr>
+                            <td colspan="8"><{$list->render()}></td>
+                        </tr>
+                    {/if}
+                {else /}
+                    <tr>
+                        <td colspan="8" class="text-center">没有数据！</td>
+                    </tr>
+                {/if}
+            </tbody>
+        </table>
+
+    </div>
+{/block}
+{block name="js"}
+
+{/block}

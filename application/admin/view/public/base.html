@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="renderer" content="webkit">
+        <meta http-equiv="Cache-Control" content="no-siteapp"/>
+        <title>__MANAGE_PLATFORM__ - {block name="title"}{/block}</title>
+        <!--<link rel="shortcut icon" href="/static/admin/img/favicon.ico">-->
+        <link href="/static/admin/css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+        <link href="/static/admin/css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+        <link href="/static/admin/css/animate.min.css" rel="stylesheet">
+        <link href="/static/admin/css/main.css" rel="stylesheet">
+        {block name="css"}{/block}
+    </head>
+    <body>
+        <div id="content">
+            <div class="container-fluid">
+                {block name="main"}主内容{/block}
+            </div>
+        </div>
+        <script>
+            var DOMAIN_URL = '<{$DOMAIN_URL}>';
+            var STATIC_URL = '<{$STATIC_URL}>';
+            var BD_UPLOADS_URL = '<{:url("upload/webUpload")}>';
+            var BD_DEL_IMAGE_URL = '<{:url("upload/dbDel")}>';
+        </script>
+        <script src="/static/admin/js/jquery.min.js?v=2.1.4"></script>
+        <script src="/static/admin/js/bootstrap.min.js?v=3.3.6"></script>
+        <script src="/static/admin/js/main.js"></script>
+        {block name="js"}{/block}
+    </body>
+</html>

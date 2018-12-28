@@ -1,0 +1,166 @@
+﻿<div class="col-sm-12 form-group">
+    <div class="widget-title" style="margin-bottom: 20px;margin-left: 15px;"><span class="icon"> <i class="fa fa-th"></i> </span>
+        <h5>一级菜单</h5>
+    </div>
+    <div class="col-sm-3">
+        <label class="col-sm-3 control-label">标题：</label>
+        <div class="col-sm-9">
+            <input name="name1" value="{if condition="isset($menus[0]['name'])"}<{$menus[0]['name']}>{/if}" class="form-control" type="text" datatype="*" nullmsg="请输入菜单标题" placeholder="请输入菜单标题"/>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label class="col-sm-6 control-label">响应动作类型：</label>
+            <div class="col-sm-6">
+                <select name="decrypt_type1" class="form-control">
+                    <!--<option value="">请选择</option>-->
+                    {volist name="buttonTypeList" id="buttonType"}
+                        <option value="<{$buttonType.event}>" {if condition="isset($menus[0]['type']) && $menus[0]['type'] == $buttonType.event"}selected{/if} ><{$buttonType.event_name}></option>
+                    {/volist}
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label class="col-sm-4 control-label">菜单内容：</label>
+            <div class="col-sm-7">
+                <input name="content1" value="{if condition="isset($menus[0]['content'])"}<{$menus[0]['content']}>{/if}" class="form-control" type="text" nullmsg="请输入菜单内容" placeholder="请输入菜单内容"/>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="child_meun1">
+    <div class="col-sm-12 form-group">
+        <div class="widget-title" style="margin-bottom: 20px;margin-left: 15px;"><span class="icon"> <i class="fa fa-th"></i> </span>
+            <h5>一级子菜单</h5>
+        </div>
+        <div class="col-sm-3">
+            <label class="col-sm-3 control-label">标题：</label>
+            <div class="col-sm-9">
+                <input name="child_name1[]" value="{if condition="isset($menus[0]['sub_button'][0]['name'])"}<{$menus[0]['sub_button'][0]['name']}>{/if}" class="form-control" type="text" placeholder="请输入菜单标题"/>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <label class="col-sm-6 control-label">响应动作类型：</label>
+            <div class="col-sm-6">
+                <select name="child_decrypt_type1[]" class="form-control">
+                    <!--<option value="">请选择</option>-->
+                    {volist name="buttonTypeList" id="buttonType"}
+                    <option value="<{$buttonType.event}>" {if condition="isset($menus[0]['sub_button'][0]['type']) && $menus[0]['sub_button'][0]['type'] == $buttonType.event"}selected{/if} ><{$buttonType.event_name}></option>
+                    {/volist}
+                </select>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <label class="col-sm-4 control-label">菜单内容：</label>
+            <div class="col-sm-7">
+                <input name="child_content1[]" value="{if condition="isset($menus[0]['sub_button'][0]['content'])"}<{$menus[0]['sub_button'][0]['content']}>{/if}" class="form-control" type="text" placeholder="请输入菜单内容"/>
+            </div>
+        </div>
+    </div>
+    <div class="hr-line-dashed"></div>
+    <div class="col-sm-12 form-group">
+        <div class="col-sm-3">
+            <label class="col-sm-3 control-label">标题：</label>
+            <div class="col-sm-9">
+                <input name="child_name1[]"  value="{if condition="isset($menus[0]['sub_button'][1]['name'])"}<{$menus[0]['sub_button'][1]['name']}>{/if}" nullmsg="请输入菜单标题" class="form-control" type="text" placeholder="请输入菜单标题"/>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <label class="col-sm-6 control-label">响应动作类型：</label>
+            <div class="col-sm-6">
+                <select name="child_decrypt_type1[]" class="form-control">
+                    <!--<option value="">请选择</option>-->
+                    {volist name="buttonTypeList" id="buttonType"}
+                    <option value="<{$buttonType.event}>" {if condition="isset($menus[0]['sub_button'][1]['type']) && $menus[0]['sub_button'][1]['type'] == $buttonType.event"}selected{/if}  ><{$buttonType.event_name}></option>
+                    {/volist}
+                </select>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <label class="col-sm-4 control-label">菜单内容：</label>
+            <div class="col-sm-7">
+                <input name="child_content1[]"  value="{if condition="isset($menus[0]['sub_button'][1]['content'])"}<{$menus[0]['sub_button'][1]['content']}>{/if}"  class="form-control" type="text" placeholder="请输入菜单内容"/>
+            </div>
+        </div>
+    </div>
+    <div class="hr-line-dashed"></div>
+    <div class="col-sm-12 form-group">
+        <div class="col-sm-3">
+            <label class="col-sm-3 control-label">标题：</label>
+            <div class="col-sm-9">
+                <input name="child_name1[]" value="{if condition="isset($menus[0]['sub_button'][2]['name'])"}<{$menus[0]['sub_button'][2]['name']}>{/if}"  nullmsg="请输入菜单标题" class="form-control" type="text" placeholder="请输入菜单标题"/>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <label class="col-sm-6 control-label">响应动作类型：</label>
+            <div class="col-sm-6">
+                <select name="child_decrypt_type1[]" class="form-control">
+                    <!--<option value="">请选择</option>-->
+                    {volist name="buttonTypeList" id="buttonType"}
+                    <option value="<{$buttonType.event}>" {if condition="isset($menus[0]['sub_button'][2]['type']) && $menus[0]['sub_button'][2]['type'] == $buttonType.event"}selected{/if}  ><{$buttonType.event_name}></option>
+                    {/volist}
+                </select>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <label class="col-sm-4 control-label">菜单内容：</label>
+            <div class="col-sm-7">
+                <input name="child_content1[]"  value="{if condition="isset($menus[0]['sub_button'][2]['content'])"}<{$menus[0]['sub_button'][2]['content']}>{/if}"  class="form-control" type="text" placeholder="请输入菜单内容"/>
+            </div>
+        </div>
+    </div>
+    <div class="hr-line-dashed"></div>
+    <div class="col-sm-12 form-group">
+        <div class="col-sm-3">
+            <label class="col-sm-3 control-label">标题：</label>
+            <div class="col-sm-9">
+                <input name="child_name1[]" value="{if condition="isset($menus[0]['sub_button'][3]['name'])"}<{$menus[0]['sub_button'][3]['name']}>{/if}"   nullmsg="请输入菜单标题" class="form-control" type="text" placeholder="请输入菜单标题"/>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <label class="col-sm-6 control-label">响应动作类型：</label>
+            <div class="col-sm-6">
+                <select name="child_decrypt_type1[]" class="form-control">
+                    <!--<option value="">请选择</option>-->
+                    {volist name="buttonTypeList" id="buttonType"}
+                    <option value="<{$buttonType.event}>" {if condition="isset($menus[0]['sub_button'][3]['type']) && $menus[0]['sub_button'][3]['type'] == $buttonType.event"}selected{/if}  ><{$buttonType.event_name}></option>
+                    {/volist}
+                </select>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <label class="col-sm-4 control-label">菜单内容：</label>
+            <div class="col-sm-7">
+                <input name="child_content1[]"  value="{if condition="isset($menus[0]['sub_button'][3]['content'])"}<{$menus[0]['sub_button'][3]['content']}>{/if}"  class="form-control" type="text" placeholder="请输入菜单内容"/>
+            </div>
+        </div>
+    </div>
+    <div class="hr-line-dashed"></div>
+    <div class="col-sm-12 form-group">
+        <div class="col-sm-3">
+            <label class="col-sm-3 control-label">标题：</label>
+            <div class="col-sm-9">
+                <input name="child_name1[]"  value="{if condition="isset($menus[0]['sub_button'][4]['name'])"}<{$menus[0]['sub_button'][4]['name']}>{/if}" nullmsg="请输入菜单标题" class="form-control" type="text" placeholder="请输入菜单标题"/>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <label class="col-sm-6 control-label">响应动作类型：</label>
+            <div class="col-sm-6">
+                <select name="child_decrypt_type1[]" class="form-control">
+                    <!--<option value="">请选择</option>-->
+                    {volist name="buttonTypeList" id="buttonType"}
+                    <option value="<{$buttonType.event}>" {if condition="isset($menus[0]['sub_button'][4]['type']) && $menus[0]['sub_button'][4]['type'] == $buttonType.event"}selected{/if}  ><{$buttonType.event_name}></option>
+                    {/volist}
+                </select>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <label class="col-sm-4 control-label">菜单内容：</label>
+            <div class="col-sm-7">
+                <input name="child_content1[]" value="{if condition="isset($menus[0]['sub_button'][4]['content'])"}<{$menus[0]['sub_button'][4]['content']}>{/if}"   class="form-control" type="text" placeholder="请输入菜单内容"/>
+            </div>
+        </div>
+    </div>
+</div>

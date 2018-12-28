@@ -1,0 +1,246 @@
+﻿{extend name="public/base" /}{block name="css"}
+    <link href="/static/admin/css/plugins/datapicker/bootstrap-datetimepicker.min.css" rel="stylesheet" >{/block}{block name="main"}
+    <div class="row" >
+        <div class="col-sm-12" >
+            <form class="form-inline" action="" method="GET" >
+            <div class="form-group" >
+                <div class="input-daterange " >
+                    <div class="input-group" >
+                        <span class="input-group-addon" >
+                            <span >日期筛选</span >
+                        </span >
+                        <input type="text" name="start_time" class="form-control" value="<{$Think.get.start_time}>" data-plugin="datepicker" placeholder="开始日期" >
+                    </div >
+                    <div class="input-group" >
+                        <span class="input-group-addon" > 至 </span >
+                        <input type="text" name="end_time" class="form-control" value="<{$Think.get.end_time}>" data-plugin="datepicker" placeholder="结束日期" >
+                    </div >
+                </div >
+            </div >
+            <div class="form-group" >
+                <div class="input-group" >
+                    <span class="input-group-addon" >产品</span >
+                    <select name="goods_id" class="form-control" >
+                        <option value="" >请选择</option >
+                        {volist name="goodsList" id="goods"}
+                            <option value="<{$goods.id}>" {if condition="$goods.id eq $Think.get.goods_id" }selected{/if} ><{$goods.goods_name}></option>
+                        {/volist}
+                    </select >
+                </div >
+            </div >
+            <div class="form-group" >
+              <button type="submit" class="btn btn-white" >搜索</button >
+            </div >
+        </form >
+        </div >
+        <!-- 性别比例 -->
+        <div class="col-sm-6" >
+            <div class="panel panel-success" >
+                <div class="panel-body" >
+                    <div id="gender_proportion" style="height:200px;" ></div >
+                </div >
+            </div >
+        </div >
+        <!--  新用户比例 -->
+        <div class="col-sm-6" >
+            <div class="panel panel-success" >
+                <div class="panel-body" >
+                    <div id="new_user" style="height:200px;" ></div >
+                </div >
+            </div >
+        </div >
+        <!--  年龄分布 -->
+       <!-- <div class="col-sm-6" >
+            <div class="panel panel-success" >
+                <div class="panel-body" >
+                    <div id="age_distribution" style="height:350px;" ></div >
+                </div >
+            </div >
+        </div >-->
+        <!--  地区分布前五 -->
+        <div class="col-sm-12" >
+            <div class="panel panel-success" >
+                <div class="panel-body" >
+                    <div id="regional_distribution" style="height:350px;" ></div >
+                </div >
+            </div >
+        </div >
+    </div >
+{/block}
+{block name="js"}
+    <script src="/static/admin/js/plugins/datapicker/bootstrap-datetimepicker.min.js" ></script >
+    <script src="/static/admin/js/plugins/datapicker/bootstrap-datetimepicker.zh-CN.js" ></script >
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js" ></script >
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js" ></script >
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js" ></script >
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js" ></script >
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js" ></script >
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js" ></script >
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM" ></script >
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js" ></script >
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js" ></script >
+
+    <script >
+        $(function () {
+            //时间控件
+            function getPluginDate() {//普通调用
+                $("input[data-plugin=datepicker]").each(function () {
+                    var dateList = [];
+                    var lan = $(this).data("language");
+                    var format = $(this).data("format");
+                    var minview = "";
+                    if (format == undefined) {
+                        format = 'yyyy-mm-dd';
+                        minview = "month";
+                    }
+                    $(this).datetimepicker({
+                        format: format,
+                        language: lan,
+                        pickDate: true,
+                        pickTime: false,
+                        minView: minview,
+                        startView: 2,
+                        autoclose: true,
+                    }).on("changeDate", function () {
+                        var dateClicked = $(this).val();
+                        if (dateList.indexOf(dateClicked) > -1) {
+                            dateList.splice(dateList.indexOf(dateClicked), 1);
+                        } else {
+                            dateList.push($(this).val());
+
+                        }
+                        $(this).siblings("#datelist").val(dateList);
+                    });
+                })
+
+            }
+
+            getPluginDate();
+        });
+    </script >
+    <!-- 性别比例 -->
+    <script type="text/javascript" >
+            var myChart = echarts.init(document.getElementById("gender_proportion"));
+            option = {
+                title: {
+                    text: '性别比例',
+                    //subtext: '纯属虚构',
+                    x: 'center'
+                },
+                tooltip: {
+                    trigger: 'item',
+                    formatter: "{a} <br/>{b} : {c} ({d}%)"
+                },
+                legend: {
+                    type: 'scroll',
+                    orient: 'vertical',
+                    right: 10,
+                    top: 20,
+                    bottom: 20,
+                    data: ['男','女','未知'],
+                    selected: {
+                        '男':true,
+                        '女':true,
+                        '未知':true,
+                    }
+                },
+                series: [
+                    {
+                        name: '性别比例',
+                        type: 'pie',
+                        radius: '55%',
+                        center: ['40%', '50%'],
+                        data: <{$gender_proportion}>,
+                        itemStyle: {
+                            emphasis: {
+                                shadowBlur: 10,
+                                shadowOffsetX: 0,
+                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                            }
+                        }
+                    }
+                ]
+            };
+
+            if (option && typeof option === "object") {
+                myChart.setOption(option, true);
+            }
+       </script >
+    <!--  新用户比例 -->
+    <script type="text/javascript">
+        var myChart = echarts.init(document.getElementById("new_user"));
+        option = {
+            title: {
+                text: '新用户比例',
+                //subtext: '纯属虚构',
+                x: 'center'
+            },
+            color: ['#2f4554','#c4ccd3'],
+            tooltip: {
+                trigger: 'item',
+                formatter: "{a} <br/>{b}: {c} ({d}%)"
+            },
+            legend: {
+                orient: 'vertical',
+                x: 'left',
+                data:['新用户','老用户']
+            },
+            series: [
+            {
+                name:'用户比例',
+                type:'pie',
+                radius: ['50%', '70%'],
+                avoidLabelOverlap: false,
+                label: {
+                    normal: {
+                        show: false,
+                        position: 'center'
+                    },
+                    emphasis: {
+                        show: true,
+                        textStyle: {
+                            fontSize: '30',
+                            fontWeight: 'bold'
+                        }
+                    }
+                },
+                labelLine: {
+                    normal: {
+                        show: false
+                    }
+                },
+                data:<{$new_user}>,
+            }
+            ]
+        };
+        if (option && typeof option === "object") {
+            myChart.setOption(option, true);
+        }
+    </script>
+    <!-- 地区分布前五 -->
+    <script type="text/javascript" >
+        var myChart = echarts.init(document.getElementById("regional_distribution"));
+        option = {
+            title: {
+                text: '地区分布前五',
+            },
+            legend: {},
+            tooltip: {},
+            dataset: {
+                source: <{$regional_distribution}>
+            },
+            xAxis: {type: 'category'},
+            yAxis: {},
+            series: [
+                {type: 'bar'},
+                {type: 'bar'},
+                {type: 'bar'},
+            ],
+            color: ['#c23531','#2f4554', '#61a0a8', '#d48265', '#91c7ae','#749f83',  '#ca8622', '#bda29a','#6e7074', '#546570', '#c4ccd3']
+        };
+
+        if (option && typeof option === "object") {
+        myChart.setOption(option, true);
+        }
+    </script >
+{/block}

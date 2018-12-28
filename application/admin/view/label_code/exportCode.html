@@ -1,0 +1,80 @@
+﻿{extend name="public/base" /}{block name="css"}
+    <link href="/static/admin/css/plugins/datapicker/bootstrap-datetimepicker.min.css" rel="stylesheet" >{/block}{block name="main"}
+    <div class="row" >
+        <div class="col-sm-12" >
+            <form class="form-inline" action="" method="GET" >
+            <div class="form-group" >
+                <div class="input-daterange " >
+                    <div class="input-group" >
+                        <span class="input-group-addon" >
+                            <span >日期筛选</span >
+                        </span >
+                        <input type="text" name="start_time" class="form-control" value="<{$Think.get.start_time}>" data-plugin="datepicker" placeholder="开始日期" >
+                    </div >
+                    <div class="input-group" >
+                        <span class="input-group-addon" > 至 </span >
+                        <input type="text" name="end_time" class="form-control" value="<{$Think.get.end_time}>" data-plugin="datepicker" placeholder="结束日期" >
+                    </div >
+                </div >
+            </div >
+            <div class="form-group" >
+                <div class="input-group" >
+                    <span class="input-group-addon" >公司</span >
+                    <select name="company_id" class="form-control" >
+                        <option value="" >请选择</option >
+                        {volist name="companyList" id="company"}
+                            <option value="<{$company.id}>" {if condition="$company.id eq $Think.get.company_id" }selected{/if} ><{$company.name}></option>
+                        {/volist}
+                    </select >
+                </div >
+            </div >
+            <div class="form-group" >
+              <button type="submit" class="btn btn-white" >导出</button >
+            </div >
+        </form >
+        </div >
+    </div >
+{/block}
+{block name="js"}
+    <script src="/static/admin/js/plugins/datapicker/bootstrap-datetimepicker.min.js" ></script >
+    <script src="/static/admin/js/plugins/datapicker/bootstrap-datetimepicker.zh-CN.js" ></script >
+
+    <script >
+        $(function () {
+            //时间控件
+            function getPluginDate() {//普通调用
+                $("input[data-plugin=datepicker]").each(function () {
+                    var dateList = [];
+                    var lan = $(this).data("language");
+                    var format = $(this).data("format");
+                    var minview = "";
+                    if (format == undefined) {
+                        format = 'yyyy-mm-dd';
+                        minview = "month";
+                    }
+                    $(this).datetimepicker({
+                        format: format,
+                        language: lan,
+                        pickDate: true,
+                        pickTime: false,
+                        minView: minview,
+                        startView: 2,
+                        autoclose: true,
+                    }).on("changeDate", function () {
+                        var dateClicked = $(this).val();
+                        if (dateList.indexOf(dateClicked) > -1) {
+                            dateList.splice(dateList.indexOf(dateClicked), 1);
+                        } else {
+                            dateList.push($(this).val());
+
+                        }
+                        $(this).siblings("#datelist").val(dateList);
+                    });
+                })
+
+            }
+
+            getPluginDate();
+        });
+    </script >
+{/block}

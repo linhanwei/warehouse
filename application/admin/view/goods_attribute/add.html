@@ -1,0 +1,81 @@
+﻿{extend name="public/base" /}
+{block name="css"}
+    <link href="/static/admin/css/private.css" rel="stylesheet">
+{/block}
+{block name="main"}
+    <div class="widget-box">
+        <div class="widget-title">
+            <span class="icon"><a href="<{:url('goods_attribute/index')}>"><i class="fa fa-chevron-left"></i>返回</a></span>
+            <h5>属性添加</h5>
+        </div>
+        <div class="widget-content container-fluid">
+            <form class="form-horizontal" novalidate="novalidate" method="post" action="">
+                <{:token()}>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">属性名称：</label>
+                    <div class="col-sm-8">
+                        <input name="attr_name" datatype="*" nullmsg="请输入属性名称" class="form-control" type="text" placeholder="请输入属性名称" />
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">排序：</label>
+                    <div class="col-sm-8">
+                        <input name="attr_sort" value="0" datatype="n" nullmsg="请输入排序" class="form-control" type="text" placeholder="请输入排序" />
+                        <span class="Validform_checktip"><i class="fa fa-info-circle"></i> 数字越小排前面 </span>
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group add-section-list">
+                    <div class="copy-wrap">
+                        <label class="col-sm-3 control-label">属性值：</label>
+                        <div class="col-sm-6 section-wrap">
+                            <input type="text" name="attr_value_name[0]" datatype="*" nullmsg="请输入属性值" placeholder="输入属性值" class="form-control contact_phones" >
+                            <a class="btn btn-info btn-xs add-section-btn"><i class="fa fa-plus"></i>添加属性值</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                    <div class="col-sm-8 col-sm-offset-3">
+                        <button class="btn btn-success" type="submit">提交</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{/block}
+{block name="js"}
+    <script src="/static/admin/js/validform.js" type="text/javascript" ></script>
+    <script src="/static/admin/js/newvalidform.js" type="text/javascript" ></script>
+    <script type="text/javascript" >
+        $(function () {
+            //添加属性值
+            var contactWaysHtml = '<div class="copy-wrap copy-wrap2">' +
+                '<label class="col-sm-3 control-label">属性值：</label>'+
+                '<div class="col-sm-6 section-wrap">'+
+                '<input type="text" name="attr_value_name[]" datatype="*" nullmsg="请输入属性值" placeholder="输入属性值" class="contact_phones form-control">'+
+                '<a class="btn btn-danger btn-xs del-btn" herf="javascript:;"><i class="fa fa-trash-o"></i>删除</a>'+
+                '</div>' +
+                '</div>';
+            $("body").on("click", ".add-section-btn", function () {
+                $("body").find(".add-section-list").append(contactWaysHtml)
+            });
+            $("body").on("click",".del-btn",function(){
+                $(this).parents(".copy-wrap").remove();
+            });
+            $("body").on("input",".contact_phones",function(){
+                if($(this).val().length>0){
+                    $(".add-section-list").find("span.help-block").remove();
+                }
+            })
+            $("body").on("blur",".contact_phones",function(){
+                if($(this).val().length==0){
+                    $(".add-section-list").find("span.help-block:gt(0)").remove();
+                }else if($(this)){
+
+                }
+            })
+        });
+    </script>
+{/block}

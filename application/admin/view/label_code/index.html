@@ -1,0 +1,80 @@
+﻿{extend name="public/base" /}
+{block name="main"}
+    <div class="row">
+        <div class="btn-outline-wrap">
+            {if condition="in_array('admin/LabelCode/add', $adminAuthList)"}
+                <a href="<{:url('label_code/add')}>" class="btn btn-outline btn-info "><i class="fa fa-plus-circle"></i>条形码添加</a>
+            {/if}
+        </div>
+        <form class="form-inline" action="" method="GET">
+            <div class="form-group" >
+                <div class="input-group" >
+                    <span class="input-group-addon" >公司</span >
+                    <select name="company_id" class="form-control" >
+                        <option value="" >请选择</option >
+                        {volist name="companyList" id="company"}
+                            <option value="<{$company.id}>" {if condition="$company.id eq $Think.get.company_id" }selected{/if} ><{$company.name}></option>
+                        {/volist}
+                    </select >
+                </div >
+            </div >
+            <div class="form-group">
+                <select name="field" class="form-control">
+                    <option value="">请选择</option>
+                    {volist name="field_list" id="field"}
+                        <option value="<{$key}>" {if condition="$key eq $Think.get.field"}selected{/if} ><{$field}></option>
+                    {/volist}
+                </select>
+            </div>
+            <div class="form-group">
+                <input type='text' name='keyword' style='width:200px;' class='form-control' value="<{$Think.get.keyword}>" placeholder="请输入搜索数据" />
+                <button type="submit" class="btn btn-white">搜索</button>
+            </div>
+        </form>
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>公司</th>
+                    <th>条形码</th>
+                    <th>是否已导出</th>
+                    <th>修改时间</th>
+                    <th>添加时间</th>
+                    <!--<th>操作</th>-->
+                </tr>
+            </thead>
+            <tbody>
+                {if condition="empty($list->isEmpty())"}
+                    {volist name='list' id='code'}
+                        <tr>
+                            <td class="text-center"><{$code.id}></td>
+                            <td><{$code.company_name}></td>
+                            <td class="text-center"><{$code.code}></td>
+                            <td class="text-center"><{$code.is_export_name}></td>
+                            <td class="text-center"><{$code.update_time}></td>
+                            <td class="text-center"><{$code.create_time}></td>
+                            <!--<td class="text-center">
+                                {if condition="in_array('admin/LabelCode/edit', $adminAuthList)"}
+                                <a href="<{:url('label_code/edit')}>?id=<{$code.id}>" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i>修改</a>
+                                {/if}
+                                {if condition="in_array('admin/LabelCode/del', $adminAuthList)"}
+                                <a data-href="<{:url('label_code/del')}>?id=<{$code.id}>" class="btn btn-danger btn-xs" onclick="plt.confirmAction(event)" data-title="确认删除"><i class="fa fa-trash-o"></i>删除</a>
+                                {/if}
+                            </td>-->
+                        </tr>
+                    {/volist}
+                    {if condition="$list->render()"}
+                        <tr>
+                            <td colspan="8"><{$list->render()}></td>
+                        </tr>
+                    {/if}
+                {else /}
+                    <tr>
+                        <td colspan="8" class="text-center">没有数据！</td>
+                    </tr>
+                {/if}
+            </tbody>
+        </table>
+
+    </div>
+{/block}

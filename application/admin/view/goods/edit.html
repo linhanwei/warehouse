@@ -1,0 +1,198 @@
+﻿{extend name="public/base" /}
+{block name="css"}
+
+{/block}
+{block name="main"}
+    <div class="widget-box">
+        <div class="widget-title">
+            <span class="icon"><a href="<{:url('goods/index')}>"><i class="fa fa-chevron-left"></i>返回</a></span>
+            <h5>商品修改</h5>
+        </div>
+        <div class="widget-content container-fluid">
+            <form class="form-horizontal" novalidate="novalidate" method="post" action="">
+                <{:token()}>
+                <div class="form-group col-sm-6">
+                    <label class="col-sm-4 control-label">商品名称：</label>
+                    <div class="col-sm-8">
+                        <input name="goods_name" value="<{$goodsInfo.goods_name}>" datatype="*" nullmsg="请输入商品名称" class="form-control" type="text" placeholder="请输入商品名称" />
+                    </div>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label class="col-sm-4 control-label">品牌：</label>
+                    <div class="col-sm-8">
+                        <select name="brand_id" class="form-control">
+                            <!--<option value="">请选择</option>-->
+                            {volist name="brankList" id="brank"}
+                                <option value="<{$brank.id}>" {if condition="$brank.id eq $goodsInfo.brand_id"}selected{/if} ><{$brank.brand_name}></option>
+                            {/volist}
+                        </select>
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group col-sm-6">
+                    <label class="col-sm-4 control-label">企业：</label>
+                    <div class="col-sm-8">
+                        <select name="company_id" class="form-control">
+                            <!--<option value="">请选择</option>-->
+                            {volist name="companyList" id="company"}
+                                <option value="<{$company.id}>" {if condition="$company.id eq $goodsInfo.company_id"}selected{/if} ><{$company.name}></option>
+                            {/volist}
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label class="col-sm-4 control-label">生产厂家：</label>
+                    <div class="col-sm-8">
+                        <input type="text" name="manufacturer"  value="<{$goodsInfo.manufacturer}>" datatype="*" nullmsg="请输入生产厂家" placeholder="输入生产厂家" class="form-control contact_phones" >
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group col-sm-6">
+                    <label class="col-sm-4 control-label">产地：</label>
+                    <div class="col-sm-8">
+                        <input type="text" name="produce_place"  value="<{$goodsInfo.produce_place}>" datatype="*" nullmsg="请输入产地" placeholder="输入产地" class="form-control contact_phones" >
+                    </div>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label class="col-sm-4 control-label">购买链接：</label>
+                    <div class="col-sm-8">
+                        <input type="text" name="buy_link" value="<{$goodsInfo.buy_link}>" datatype="*" nullmsg="请输入购买链接" placeholder="输入购买链接" class="form-control contact_phones" >
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group add-section-list">
+                    {volist name="attrSaveList" id="saveAttr" key="saveid" }
+                        <div class="col-sm-12" {if condition="$saveid neq 1"}style="margin-top: 10px;"{/if} >
+                            <label class="col-sm-2 control-label">属性：</label>
+                            <div class="col-sm-10">
+                                <div class="section-wrap">
+                                    <div class="col-sm-4">
+                                         <select name="attr_id[]"  class="form-control sel_attr">
+                                            <option value="">请选择属性</option>
+                                            {volist name="attrList" id="attr"}
+                                                <option value="<{$attr.id}>" {if condition="$attr.id eq $saveAttr.attr_id"}selected{/if} ><{$attr.attr_name}></option>
+                                            {/volist}
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <select name="attr_value_id[]"  class="form-control sel_attr_value">
+                                            <option value="">请选择属性值</option>
+                                            {volist name="saveAttr.attr_value_list" id="attrValue"}
+                                                <option value="<{$attrValue.id}>" {if condition="$attrValue.id eq $saveAttr.attr_value_id"}selected{/if} ><{$attrValue.attr_value_name}></option>
+                                            {/volist}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <input type="hidden" name="goods_attr_ids[]" value="<{$saveAttr.id}>"/>
+                                    {if condition="$saveid eq 1"}
+                                        <a class="btn btn-info btn-xs add-section-btn" ><i class="fa fa-plus"></i>添加一个属性</a>
+                                    {else/}
+                                        <a class="btn btn-danger btn-xs del-btn" herf="javascript:;"><i class="fa fa-trash-o"></i>删除</a>
+                                    {/if}
+                                </div>
+                            </div>
+                        </div>
+                    {/volist}
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group uploader-group col-sm-6" data-multiple="true" data-auto="true" data-len="1" data-size="<{$Think.UPLOAD_IMAGE_SIZE}>" data-status="edit">
+                    <label class="col-sm-4 control-label">正面照片:</label>
+                    <div class="col-sm-8">
+                        <!--用来存放文件信息-->
+                        <div class="uploader-list">
+                            {volist name="goodsInfo.goods_image" id="goods_image" }
+                                <div id="WU_FILE_<{$i+20}>" class="item img-item pull-left" style="margin-bottom:10px;margin-right:10px;">
+                                    <img style="width:100px;height:100px;" src="<{$Think.IMAGE_URL}><{$goods_image}>">
+                                    <i class="fa fa-close close-btn"></i>
+                                    <div class="progress progress-striped active" style="display: none;">
+                                        <div class="progress-bar" role="progressbar" style="width: 100%;"></div>
+                                    </div>
+                                    <input type="hidden" name="goods_image[]" value="<{$goods_image}>" class="hid-filename">
+                                </div>
+                            {/volist}
+                        </div>
+                        <a class="btn btn-dark uploader-picker" data-file="goods_image" data-type="image"><i class="fa fa-upload"></i> 选择文件</a>
+                        <span class="help-block"><i class="fa fa-info-circle"></i>最大只能上传<{$Think.UPLOAD_IMAGE_SIZE}>M的图片</span>
+                        <input type="hidden" datatype="fileLen" valu="" nullmsg="请至少上传一个文件">
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group col-sm-6">
+                    <label class="col-sm-4 control-label">商品详情：</label>
+                </div>
+                <div class="form-group col-sm-12">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-10">
+                        <script type="text/plain" id="goods_body" name="goods_body"><{:htmlspecialchars_decode($goodsInfo.goods_body)}></script>
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                    <div class="col-sm-8 col-sm-offset-3">
+                        <button class="btn btn-success" type="submit">提交</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{/block}
+{block name="js"}
+    <script src="/static/admin/js/validform.js" type="text/javascript" ></script>
+    <script src="/static/admin/js/newvalidform.js" type="text/javascript" ></script>
+    <script src="/static/admin/webuploader/webuploader.min.js"></script>
+    <script src="/static/admin/js/webuploader.own.js"></script>
+    <script src="/static/plugins/UEditor/ueditor.config.js" type="text/javascript"></script>
+    <script src="/static/plugins/UEditor/editor_api.js" type="text/javascript"></script>
+    <script type="text/javascript" >
+        $(function () {
+            //添加商品值
+            $("body").on("click", ".add-section-btn", function () {
+                var contactWaysHtml = '<div class="col-sm-12" style="margin-top: 10px;">'+
+                    '<label class="col-sm-2 control-label">属性：</label>'+
+                    '<div class="col-sm-10">'+
+                    '<div class="section-wrap">'+$('.section-wrap').html()+'</div>'+
+                    '<div class="col-sm-2">'+
+                    '<a class="btn btn-danger btn-xs del-btn" herf="javascript:;"><i class="fa fa-trash-o"></i>删除</a>'+
+                    '</div></div></div>';
+
+                $("body").find(".add-section-list").append(contactWaysHtml)
+            });
+            $("body").on("click",".del-btn",function(){
+                $(this).parents(".col-sm-12").remove();
+            });
+
+            //搜索属性值
+            $('body').on('change','.sel_attr',function () {
+                get_attr_value_list($(this).val(), $(this).parent().next().find('.sel_attr_value'));
+            });
+
+            //编辑器
+            UE.getEditor('goods_body',{
+                initialFrameHeight:500,
+                serverUrl:'/static/plugins/UEditor/php/controller.php',
+            });
+
+        });
+
+        //获取属性值
+        function get_attr_value_list(attr_id,ele_obj)
+        {
+
+            $.get('<{:url("goods/getAttrValueList")}>',{attr_id:attr_id},function (return_data) {
+
+                if(return_data.status == 1)
+                {
+                    var data = return_data.data;
+                    var html = '<option value="">请选择属性值</option>';
+
+                    for (var k in data)
+                    {
+                        html += '<option value="'+data[k].id+'">'+data[k].attr_value_name+'</option>';
+                    }
+                    ele_obj.html(html);
+                }
+            });
+        }
+    </script>
+{/block}

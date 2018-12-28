@@ -1,0 +1,82 @@
+﻿{extend name="public/base" /}
+{block name="main"}
+    <div class="widget-box">
+        <div class="widget-title">
+            <span class="icon"><a href="<{:url('wechat_config/index')}>"><i class="fa fa-chevron-left"></i>返回</a></span>
+            <h5>公众号配置添加</h5>
+        </div>
+        <div class="widget-content container-fluid">
+            <form class="form-horizontal" novalidate="novalidate" method="post" action="">
+                <{:token()}>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">企业：</label>
+                    <div class="col-sm-5">
+                        <select name="company_id" class="form-control">
+                            <!--<option value="">请选择</option>-->
+                            {volist name="companyList" id="company"}
+                                <option value="<{$company.id}>"><{$company.name}></option>
+                            {/volist}
+                        </select>
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">公众号名称：</label>
+                    <div class="col-sm-5">
+                        <input name="app_name" datatype="*" nullmsg="请输入公众号名称" class="form-control" type="text" placeholder="请输入公众号名称" />
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">开发者ID(AppID)：</label>
+                    <div class="col-sm-5">
+                        <input name="app_id" datatype="*" nullmsg="请输入开发者ID(AppID)" class="form-control" type="text" placeholder="请输入开发者ID(AppID)" />
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">开发者密码(AppSecret)：</label>
+                    <div class="col-sm-5">
+                        <input name="app_secret" datatype="*" nullmsg="请输入开发者密码(AppSecret)" class="form-control" type="text" placeholder="请输入开发者密码(AppSecret)" />
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">令牌(Token)：</label>
+                    <div class="col-sm-5">
+                        <input name="token"  datatype="*" nullmsg="请输入令牌(Token)" class="form-control" type="text" placeholder="请输入令牌(Token)" />
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">消息加解密密钥(EncodingAESKey)：</label>
+                    <div class="col-sm-5">
+                        <input name="encoding_aes_key"  datatype="*" nullmsg="请输入消息加解密密钥(EncodingAESKey)" class="form-control" type="text" placeholder="请输入消息加解密密钥(EncodingAESKey)" />
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">消息加解密方式：</label>
+                    <div class="col-sm-3">
+                        <select name="decrypt_type" class="form-control">
+                            <!--<option value="">请选择</option>-->
+                            {volist name="decryptTypeList" id="decrypt_type"}
+                                <option value="<{$key}>"><{$decrypt_type}></option>
+                            {/volist}
+                        </select>
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group">
+                    <div class="col-sm-5 col-sm-offset-3">
+                        <button class="btn btn-success" type="submit">提交</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{/block}
+{block name="js"}
+    <script src="/static/admin/js/validform.js" type="text/javascript" ></script>
+    <script src="/static/admin/js/newvalidform.js" type="text/javascript" ></script>
+{/block}

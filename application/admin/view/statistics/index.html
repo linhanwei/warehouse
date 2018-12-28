@@ -1,0 +1,156 @@
+﻿{extend name="public/base" /}{block name="css"}
+    <link href="/static/admin/css/plugins/datapicker/bootstrap-datetimepicker.min.css" rel="stylesheet" >{/block}{block name="main"}
+    <div class="row" >
+        <!--
+        <div class="col-sm-12" >
+            <form class="form-inline" action="" method="GET" >
+                <div class="form-group" >
+                    <div class="input-daterange " >
+                        <div class="input-group" >
+                            <span class="input-group-addon" >
+                                <span >日期筛选</span >
+                            </span >
+                            <input type="text" name="start_time" class="form-control" value="<{$Think.get.start_time}>" data-plugin="datepicker" placeholder="开始日期" >
+                        </div >
+                        <div class="input-group" >
+                            <span class="input-group-addon" > 至 </span >
+                            <input type="text" name="end_time" class="form-control" value="<{$Think.get.end_time}>" data-plugin="datepicker" placeholder="结束日期" >
+                        </div >
+                    </div >
+                </div >
+                <div class="form-group" >
+                    <div class="input-group" >
+                        <span class="input-group-addon" >产品</span >
+                        <select name="goods_id" class="form-control" >
+                            <option value="" >请选择</option >
+
+                        </select >
+                    </div >
+                </div >
+                <div class="form-group" >
+                  <button type="submit" class="btn btn-white" >搜索</button >
+                </div >
+            </form >
+        </div >
+        -->
+        <div class="col-sm-12" style="margin-bottom: 20px;">
+            <table class="table table-bordered table-striped" >
+                <tbody >
+                    <tr >
+                        <th >实时扫码总量</th >
+                        <th >今日扫码次数</th >
+                        <th >疑似假码</th >
+                    </tr >
+                    <tr class="danger" >
+                        <th >1100</th >
+                        <th >1200</td >
+                        <th >1300</th >
+                    </tr >
+                </tbody >
+            </table >
+        </div >
+        <div class="col-sm-12" >
+            <div class="panel panel-success" >
+                <div class="panel-heading" >
+                    <h3 class="panel-title" >统计数据：</h3 >
+                </div >
+                <div class="panel-body" >
+                    <div id="container" style="height:400px;" ></div >
+                </div >
+            </div >
+        </div >
+    </div >
+{/block}{block name="js"}
+    <script src="/static/admin/js/plugins/datapicker/bootstrap-datetimepicker.min.js" ></script >
+    <script src="/static/admin/js/plugins/datapicker/bootstrap-datetimepicker.zh-CN.js" ></script >
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js" ></script >
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js" ></script >
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js" ></script >
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js" ></script >
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js" ></script >
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js" ></script >
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM" ></script >
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js" ></script >
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js" ></script >
+
+    <script >
+        $(function () {
+            //时间控件
+            function getPluginDate() {//普通调用
+                $("input[data-plugin=datepicker]").each(function () {
+                    var dateList = [];
+                    var lan = $(this).data("language");
+                    var format = $(this).data("format");
+                    var minview = "";
+                    if (format == undefined) {
+                        format = 'yyyy-mm-dd';
+                        minview = "month";
+                    }
+                    $(this).datetimepicker({
+                        format: format,
+                        language: lan,
+                        pickDate: true,
+                        pickTime: false,
+                        minView: minview,
+                        startView: 2,
+                        autoclose: true,
+                    }).on("changeDate", function () {
+                        var dateClicked = $(this).val();
+                        if (dateList.indexOf(dateClicked) > -1) {
+                            dateList.splice(dateList.indexOf(dateClicked), 1);
+                        } else {
+                            dateList.push($(this).val());
+
+                        }
+                        $(this).siblings("#datelist").val(dateList);
+                    });
+                })
+
+            }
+
+            getPluginDate();
+        });
+    </script >
+    <script type="text/javascript">
+        var dom = document.getElementById("container");
+        var myChart = echarts.init(dom);
+        var app = {};
+        option = null;
+        option = {
+            title: {
+                //text: '堆叠区域图'
+            },
+            toolbox: {
+                feature: {
+                    saveAsImage: {}
+                }
+            },
+            tooltip : {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'cross',
+                    label: {
+                        backgroundColor: '#6a7985'
+                    }
+                }
+            },
+            xAxis: {
+                type: 'category',
+                boundaryGap: false,
+                data: <{$date_list}>
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: [{
+                data: <{$data_list}>,
+                type: 'line',
+                areaStyle: {}
+            }]
+        };
+
+        if (option && typeof option === "object") {
+            myChart.setOption(option, true);
+        }
+    </script>
+{/block}
