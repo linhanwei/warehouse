@@ -1,0 +1,40 @@
+a,button{
+    cursor: pointer;
+}
+select.help-block,input.help-block,textarea.help-block{
+    margin-top:0;
+}
+.add-section-list input{
+    width:77%  !important;
+    display: inline-block !important;
+}
+.section-wrap select{
+    position: absolute;
+    right: 23.3%;
+    width: 100px;
+    height: 34px;
+    border-radius: 0;
+    top: 0;
+}
+.add-section-list .copy-wrap .section-wrap{
+    margin-bottom:16px;
+}
+.add-section-list .copy-wrap .add-section-btn{
+    margin-left:10px;
+}
+.add-section-list .copy-wrap .add-section-btn:hover{
+    opacity: 0.9;
+}
+.add-section-list .copy-wrap .del-btn{
+    margin-left:10px;
+}
+.add-section-list .copy-wrap2{
+    clear: both;
+}
+.add-section-list .copy-wrap2 .del-btn{
+    margin-left:14px;
+}
+.add-section-list .copy-wrap .del-btn:hover{
+    color:#ed5565;
+    opacity: 0.9;
+}
