@@ -16,6 +16,9 @@ class Base extends Model
     // 数据表主键 复合主键使用数组定义 不设置则自动获取
     protected $pk = 'id';
 
+    //自动时间戳
+	protected $autoWriteTimestamp = true;
+
     //自动完成
     protected $update = ['update_time'];
 

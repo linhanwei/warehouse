@@ -75,6 +75,7 @@ class Goods extends Common
                         $attr_ids = input('attr_id/a');
                         $attr_value_ids = input('attr_value_id/a');
                         if (!empty($attr_ids)) {
+							$addAttrList = [];
                             foreach ($attr_ids as $k => $val) {
                                 if(empty($val) || empty($attr_value_ids[$k]))
                                 {
@@ -124,6 +125,7 @@ class Goods extends Common
     public function edit()
     {
         $id = input('id');
+
         if(empty($id))
         {
             $this->error('请选择需要修改的商品!');
@@ -154,8 +156,9 @@ class Goods extends Common
                 $GoodsCommonModel = model('GoodsCommon');
 
                 //验证商品名称是否存在
-                $countWhere['id'] = array('neq', $id);
-                $countWhere['goods_name'] = $goods_name;
+				$countWhere = [];
+                $countWhere[] = ['id', 'neq', $id];
+                $countWhere[] = ['goods_name', '=', $goods_name];
                 $count = $GoodsCommonModel->getCount($countWhere);
 
                 if($count > 0)
