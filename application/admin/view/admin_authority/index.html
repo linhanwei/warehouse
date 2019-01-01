@@ -54,7 +54,7 @@
                     {/volist}
                     {if condition="$list->render()"}
                         <tr>
-                            <td colspan="8"><{$list->render()}></td>
+                            <td colspan="8"><{$list->render()|raw}></td>
                         </tr>
                     {/if}
                 {else /}
