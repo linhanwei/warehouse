@@ -68,6 +68,9 @@ class Goods extends Common
                     $addGoodsData['brand_id'] = $input_arr['brand_id'];
                     $addGoodsData['goods_image'] = $input_arr['goods_image'][0];
                     $addGoodsData['company_id'] = $GoodsCommonModel->company_id;
+                    $addGoodsData['goods_price'] = $input_arr['goods_costprice'];
+                    $addGoodsData['goods_marketprice'] = $input_arr['goods_marketprice'];
+                    //$addGoodsData['goods_promotion_price'] = $input_arr['goods_promotion_price'];
                     $result = $GoodsModel->addData($addGoodsData);
 
                     if ($result) {
@@ -180,6 +183,9 @@ class Goods extends Common
                     $editGoodsData['brand_id'] = $input_arr['brand_id'];
                     $editGoodsData['goods_image'] = $input_arr['goods_image'][0];
                     $editGoodsData['company_id'] = $GoodsCommonModel->company_id;
+					$editGoodsData['goods_price'] = $input_arr['goods_costprice'];
+					$editGoodsData['goods_marketprice'] = $input_arr['goods_marketprice'];
+					//$editGoodsData['goods_promotion_price'] = $input_arr['goods_promotion_price'];
                     $result = $GoodsModel->editData(array('goods_commonid' => $id), $editGoodsData);
 
                     if ($result) {

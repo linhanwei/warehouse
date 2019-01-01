@@ -12,13 +12,13 @@
             <form class="form-horizontal" novalidate="novalidate" method="post" action="">
                 <{:token()}>
                 <div class="form-group col-sm-6">
-                    <label class="col-sm-4 control-label">商品名称：</label>
+                    <label class="col-sm-4 control-label"><code>*</code>商品名称：</label>
                     <div class="col-sm-8">
                         <input name="goods_name" datatype="*" nullmsg="请输入商品名称" class="form-control" type="text" placeholder="请输入商品名称" />
                     </div>
                 </div>
                 <div class="form-group col-sm-6">
-                    <label class="col-sm-4 control-label">品牌：</label>
+                    <label class="col-sm-4 control-label"><code>*</code>品牌：</label>
                     <div class="col-sm-8">
                         <select name="brand_id" class="form-control">
                             <!--<option value="">请选择</option>-->
@@ -30,7 +30,7 @@
                 </div>
                 <div class="hr-line-dashed"></div>
                 <div class="form-group col-sm-6">
-                    <label class="col-sm-4 control-label">企业：</label>
+                    <label class="col-sm-4 control-label"><code>*</code>企业：</label>
                     <div class="col-sm-8">
                         <select name="company_id" class="form-control">
                             <!--<option value="">请选择</option>-->
@@ -41,22 +41,50 @@
                     </div>
                 </div>
                 <div class="form-group col-sm-6">
-                    <label class="col-sm-4 control-label">生产厂家：</label>
+                    <label class="col-sm-4 control-label"><code>*</code>生产厂家：</label>
                     <div class="col-sm-8">
-                        <input type="text" name="manufacturer" datatype="*" nullmsg="请输入生产厂家" placeholder="输入生产厂家" class="form-control contact_phones" >
+                        <input type="text" name="manufacturer" datatype="*" nullmsg="请输入生产厂家" placeholder="输入生产厂家" class="form-control" >
                     </div>
                 </div>
                 <div class="hr-line-dashed"></div>
                 <div class="form-group col-sm-6">
-                    <label class="col-sm-4 control-label">产地：</label>
+                    <label class="col-sm-4 control-label"><code>*</code>成本价：</label>
                     <div class="col-sm-8">
-                        <input type="text" name="produce_place" datatype="*" nullmsg="请输入产地" placeholder="输入产地" class="form-control contact_phones" >
+                        <input type="text" name="goods_costprice" datatype="*" nullmsg="请输入成本价" placeholder="输入成本价" class="form-control" >
+                    </div>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label class="col-sm-4 control-label"><code>*</code>商品价格：</label>
+                    <div class="col-sm-8">
+                        <input type="text" name="goods_price" datatype="*" nullmsg="请输入商品价格" placeholder="输入商品价格" class="form-control" >
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <!--
+                <div class="form-group col-sm-6">
+                    <label class="col-sm-4 control-label"><code>*</code>商品促销价格：</label>
+                    <div class="col-sm-8">
+                        <input type="text" name="goods_promotion_price" datatype="*" nullmsg="请输入商品促销价格" placeholder="输入商品促销价格" class="form-control" >
+                    </div>
+                </div>
+                -->
+                <div class="form-group col-sm-6">
+                    <label class="col-sm-4 control-label"><code>*</code>市场价：</label>
+                    <div class="col-sm-8">
+                        <input type="text" name="goods_marketprice" datatype="*" nullmsg="请输入市场价" placeholder="输入市场价" class="form-control" >
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group col-sm-6">
+                    <label class="col-sm-4 control-label"><code>*</code>产地：</label>
+                    <div class="col-sm-8">
+                        <input type="text" name="produce_place" datatype="*" nullmsg="请输入产地" placeholder="输入产地" class="form-control" >
                     </div>
                 </div>
                 <div class="form-group col-sm-6">
                     <label class="col-sm-4 control-label">购买链接：</label>
                     <div class="col-sm-8">
-                        <input type="text" name="buy_link" datatype="*" nullmsg="请输入购买链接" placeholder="输入购买链接" class="form-control contact_phones" >
+                        <input type="text" name="buy_link"  nullmsg="请输入购买链接" placeholder="输入购买链接" class="form-control" >
                     </div>
                 </div>
                 <div class="hr-line-dashed"></div>
