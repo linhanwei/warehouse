@@ -21,8 +21,9 @@ class AdminAuthorityGroup extends Base
     //获取权限
     public function getAuthList($group_id)
     {
-        $newAuthList = array();
-        $where = array();
+        $newAuthList = [];
+        $where = [];
+        $where[] = ['status', '=', 1];
         if($group_id > 0) {
             $groupInfo = $this->detail($group_id, 'authorities');
             if (!empty($groupInfo)) {

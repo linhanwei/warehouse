@@ -121,50 +121,52 @@ class Index extends Common
                     ),
                 ),
             ),
-            array(
-                'name' => '微信管理','class' => '','url' => '',
-                'children'=> array(
-                    array('name' => '公众号配置列表','class' => '','auth' => 'admin/WechatConfig/index', 'url' => 'wechat_config/index',
-                        'children'=> array(),
-                    ),
-                ),
-            ),
-            array(
-                'name' => '防伪码管理','class' => '','url' => '',
-                'children'=> array(
-                    array('name' => '生码记录','class' => '','auth' => 'admin/LabelCode/groupIndex', 'url' => 'label_code/groupIndex',
-                        'children'=> array(
-                            //array('name' => '权限管理1','class' => '','auth' => 'admin/AdminAuthority/index','url' =>'/admin_authority/index',),
-                        ),
-                    ),
-                    array('name' => '条形码列表','class' => '','auth' => 'admin/LabelCode/index', 'url' => 'label_code/index','reload' => 1,
-                        'children'=> array(),
-                    ),
-                    array('name' => '条形码导出','class' => '','auth' => 'admin/LabelCode/exportCode', 'url' => 'label_code/exportCode',
-                        'children'=> array(),
-                    ),
-                ),
-            ),
-            array(
-                'name' => '大数据分析','class' => '','url' => '',
-                'children'=> array(
-                    array('name' => '总体概况','class' => '','auth' => 'admin/Statistics/index', 'url' => 'statistics/index',
-                        'children'=> array(),
-                    ),
-                    array('name' => '扫码地区统计','class' => '','auth' => 'admin/Statistics/region', 'url' => 'statistics/region',
-                        'children'=> array(),
-                    ),
-                    array('name' => '扫码性别统计','class' => '','auth' => 'admin/Statistics/gender', 'url' => 'statistics/gender',
-                        'children'=> array(),
-                    ),
-                    array('name' => '用户扫码记录','class' => '','auth' => 'admin/Statistics/record', 'url' => 'statistics/record',
-                        'children'=> array(),
-                    ),
-                    array('name' => '用户粉丝分析','class' => '','auth' => 'admin/Statistics/fans', 'url' => 'statistics/fans',
-                        'children'=> array(),
-                    ),
-                ),
-            ),
+			/*
+		  array(
+			  'name' => '微信管理','class' => '','url' => '',
+			  'children'=> array(
+				  array('name' => '公众号配置列表','class' => '','auth' => 'admin/WechatConfig/index', 'url' => 'wechat_config/index',
+					  'children'=> array(),
+				  ),
+			  ),
+		  ),
+		  array(
+			  'name' => '防伪码管理','class' => '','url' => '',
+			  'children'=> array(
+				  array('name' => '生码记录','class' => '','auth' => 'admin/LabelCode/groupIndex', 'url' => 'label_code/groupIndex',
+					  'children'=> array(
+						  //array('name' => '权限管理1','class' => '','auth' => 'admin/AdminAuthority/index','url' =>'/admin_authority/index',),
+					  ),
+				  ),
+				  array('name' => '条形码列表','class' => '','auth' => 'admin/LabelCode/index', 'url' => 'label_code/index','reload' => 1,
+					  'children'=> array(),
+				  ),
+				  array('name' => '条形码导出','class' => '','auth' => 'admin/LabelCode/exportCode', 'url' => 'label_code/exportCode',
+					  'children'=> array(),
+				  ),
+			  ),
+		  ),
+		  array(
+			  'name' => '大数据分析','class' => '','url' => '',
+			  'children'=> array(
+				  array('name' => '总体概况','class' => '','auth' => 'admin/Statistics/index', 'url' => 'statistics/index',
+					  'children'=> array(),
+				  ),
+				  array('name' => '扫码地区统计','class' => '','auth' => 'admin/Statistics/region', 'url' => 'statistics/region',
+					  'children'=> array(),
+				  ),
+				  array('name' => '扫码性别统计','class' => '','auth' => 'admin/Statistics/gender', 'url' => 'statistics/gender',
+					  'children'=> array(),
+				  ),
+				  array('name' => '用户扫码记录','class' => '','auth' => 'admin/Statistics/record', 'url' => 'statistics/record',
+					  'children'=> array(),
+				  ),
+				  array('name' => '用户粉丝分析','class' => '','auth' => 'admin/Statistics/fans', 'url' => 'statistics/fans',
+					  'children'=> array(),
+				  ),
+			  ),
+		  ),
+		  */
             array(
                 'name' => '设置','class' => '','url' => '',
                 'children'=> array(
