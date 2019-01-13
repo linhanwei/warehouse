@@ -222,4 +222,61 @@ class Admin extends Common
             $this->error('删除失败!');
         }
     }
+
+	//修改密码
+	public function editPassword()
+	{
+		$admin_id = session('admin_id');
+
+		if(empty($admin_id))
+		{
+			$this->error('请选择需要修改的管理员!');
+		}
+
+		$adminModel = model('Admin');
+
+		//判断管理员是否存在
+		$adminInfo = $adminModel->detail($admin_id);
+
+		if(empty($adminInfo))
+		{
+			$this->error('选择的管理员不存在!');
+		}
+
+		if(request()->isPost())
+		{
+			$validate = validate('Admin');
+
+			if(!$validate->scene('reset_password')->check(input())){
+				$this->error($validate->getError());
+			}
+			else
+			{
+				$password = input('admin_password');
+
+				//获取密码盐
+				$String = new \Util\StringSelf();
+				$admin_salt = $String->randString();
+
+				$editData['admin_password'] = make_password($password, $admin_salt);
+				$editData['admin_salt'] = $admin_salt;
+
+				$result = $adminModel->editData(array('admin_id'=> $admin_id), $editData);
+
+				if($result)
+				{
+					$this->success('修改成功');
+				}
+				else
+				{
+					$this->error('修改失败');
+				}
+			}
+		}
+		else
+		{
+			$this->assign('admin_info', $adminInfo);
+			return $this->fetch('editPassword');
+		}
+	}
 }
