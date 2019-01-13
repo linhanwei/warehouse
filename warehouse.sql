@@ -4318,6 +4318,7 @@ CREATE TABLE `my_wechat_user` (
 
 
 ALTER TABLE `my_admin_authority` ADD `status` TINYINT(1) NOT NULL DEFAULT '1' COMMENT '状态：1=启用，0=不启用' AFTER `function`, ADD INDEX `index_status` (`status`);
+ALTER TABLE `my_goods` ADD `goods_position` VARCHAR(31) NULL COMMENT '仓位货架' AFTER `company_id`;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
