@@ -61,7 +61,7 @@ class Company extends Validate
 
     //验证场景
     protected $scene = array(
-        'add' => array('name', 'legal_person', 'reg_capital', 'business_circles_number', 'mobile', 'contacts', 'public_account', 'bank_id', 'business_license_img', 'province_id', 'city_id', 'district_id', 'address'),
-        'edit' => array('name', 'legal_person', 'reg_capital', 'business_circles_number', 'mobile', 'contacts', 'public_account', 'bank_id', 'business_license_img', 'province_id', 'city_id', 'district_id', 'address'),
+        'add' => array('name', 'mobile', 'contacts','province_id', 'city_id', 'district_id', 'address'),
+        'edit' => array('name', 'mobile', 'contacts','province_id', 'city_id', 'district_id', 'address'),
     );
 }

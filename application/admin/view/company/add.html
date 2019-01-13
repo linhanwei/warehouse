@@ -9,51 +9,20 @@
             <form class="form-horizontal" id="commentForm2" novalidate="novalidate" method="post" action="">
                 <{:token()}>
                 <div class="form-group col-sm-6">
-                    <label class="col-sm-4 control-label">供应商名称：</label>
+                    <label class="col-sm-4 control-label"><code>*</code>供应商名称：</label>
                     <div class="col-sm-8">
                         <input name="name" datatype="*" nullmsg="请输入供应商名称" class="form-control" type="text" placeholder="请输入供应商名称" />
                     </div>
                 </div>
                 <div class="form-group col-sm-6">
-                    <label class="col-sm-4 control-label">法人：</label>
-                    <div class="col-sm-8">
-                        <input name="legal_person" datatype="*" nullmsg="请输入法人" class="form-control" type="text" placeholder="请输入法人" />
-                    </div>
-                </div>
-                <div class="hr-line-dashed"></div>
-                <div class="form-group col-sm-6">
-                    <label class="col-sm-4 control-label">注册资本(万元)：</label>
-                    <div class="col-sm-8">
-                        <input name="reg_capital" datatype="n" nullmsg="请输入注册资本" class="form-control" type="text" placeholder="请输入注册资本" />
-                    </div>
-                </div>
-                <div class="form-group col-sm-6">
-                        <label class="col-sm-4 control-label">对公账户：</label>
-                        <div class="col-sm-8">
-                            <input name="public_account" datatype="n" nullmsg="请输入对公账户" class="form-control" type="text" placeholder="请输入对公账户" />
-                        </div>
-                </div>
-                <div class="hr-line-dashed"></div>
-                <div class="form-group col-sm-6">
-                    <label class="col-sm-4 control-label">对公银行：</label>
-                    <div class="col-sm-8">
-                        <select name="bank_id" class="form-control">
-                            <!--<option value="">请选择</option>-->
-                            {volist name="bankList" id="bank"}
-                                <option value="<{$bank.id}>"><{$bank.name}></option>
-                            {/volist}
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group col-sm-6">
-                    <label class="col-sm-4 control-label">联系人：</label>
+                    <label class="col-sm-4 control-label"><code>*</code>联系人：</label>
                     <div class="col-sm-8">
                         <input name="contacts" datatype="*" nullmsg="请输入联系人" class="form-control" type="text" placeholder="请输入联系人" />
                     </div>
                 </div>
                 <div class="hr-line-dashed"></div>
                 <div class="form-group col-sm-6">
-                    <label class="col-sm-4 control-label">手机号码：</label>
+                    <label class="col-sm-4 control-label"><code>*</code>手机号码：</label>
                     <div class="col-sm-8">
                         <input name="mobile" datatype="<{$Think.VALIDATE_MOBILE_REGX}>" nullmsg="请输入手机号码" class="form-control" type="text" placeholder="请输入手机号码" />
                     </div>
@@ -64,27 +33,14 @@
                         <input name="tel" class="form-control" type="text" placeholder="请输入固定号码" />
                     </div>
                 </div>
-                <div class="hr-line-dashed"></div>.
-                <div class="form-group col-sm-6">
-                    <label class="col-sm-4 control-label">邮箱：</label>
-                    <div class="col-sm-8">
-                        <input name="email" datatype="e" ignore="ignore" class="form-control" type="text" placeholder="请输入邮箱" />
-                    </div>
-                </div>
-                <div class="form-group col-sm-6">
-                    <label class="col-sm-4 control-label">工商注册号：</label>
-                    <div class="col-sm-8">
-                        <input name="business_circles_number" datatype="*" class="form-control" type="text" nullmsg="请输入工商注册号" placeholder="请输入工商注册号" />
-                    </div>
-                </div>
-                <div class="hr-line-dashed"></div>.
+                <div class="hr-line-dashed"></div>
                 <div class="form-group col-sm-12">
-                    <label class="col-sm-2 control-label">供应商地址：</label>
+                    <label class="col-sm-2 control-label"><code>*</code>供应商地址：</label>
                     <div class="col-sm-2">
                         <select name="province_id" id="province" class="form-control" datatype="*" nullmsg="请选择省份">
                             <option value="">请选择省份</option>
                             {volist name="provinceList" id="province"}
-                                <option value="<{$province.id}>"><{$province.region_name}></option>
+                            <option value="<{$province.id}>"><{$province.region_name}></option>
                             {/volist}
                         </select>
                     </div>
@@ -99,10 +55,54 @@
                         </select>
                     </div>
                     <div class="col-sm-4">
-                       <input name="address" datatype="*" nullmsg="请输入详细地址" class="form-control" type="text" placeholder="请输入详细地址" />
+                        <input name="address" datatype="*" nullmsg="请输入详细地址" class="form-control" type="text" placeholder="请输入详细地址" />
                     </div>
                 </div>
                 <div class="hr-line-dashed"></div>
+                <div class="form-group col-sm-6">
+                    <label class="col-sm-4 control-label">法人：</label>
+                    <div class="col-sm-8">
+                        <input name="legal_person" nullmsg="请输入法人" class="form-control" type="text" placeholder="请输入法人" />
+                    </div>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label class="col-sm-4 control-label">注册资本(万元)：</label>
+                    <div class="col-sm-8">
+                        <input name="reg_capital" nullmsg="请输入注册资本" class="form-control" type="text" placeholder="请输入注册资本" />
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group col-sm-6">
+                    <label class="col-sm-4 control-label">对公银行：</label>
+                    <div class="col-sm-8">
+                        <select name="bank_id" class="form-control">
+                            <!--<option value="">请选择</option>-->
+                            {volist name="bankList" id="bank"}
+                            <option value="<{$bank.id}>"><{$bank.name}></option>
+                            {/volist}
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group col-sm-6">
+                        <label class="col-sm-4 control-label">对公账户：</label>
+                        <div class="col-sm-8">
+                            <input name="public_account"  nullmsg="请输入对公账户" class="form-control" type="text" placeholder="请输入对公账户" />
+                        </div>
+                </div>
+                <div class="hr-line-dashed"></div>.
+                <div class="form-group col-sm-6">
+                    <label class="col-sm-4 control-label">邮箱：</label>
+                    <div class="col-sm-8">
+                        <input name="email" datatype="e" ignore="ignore" class="form-control" type="text" placeholder="请输入邮箱" />
+                    </div>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label class="col-sm-4 control-label">工商注册号：</label>
+                    <div class="col-sm-8">
+                        <input name="business_circles_number" class="form-control" type="text" nullmsg="请输入工商注册号" placeholder="请输入工商注册号" />
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>.
                 <div class="form-group uploader-group col-sm-6" data-multiple="true" data-auto="true" data-len="1" data-size="<{$Think.UPLOAD_IMAGE_SIZE}>" >
                     <label class="col-sm-4 control-label">营业执照:</label>
                     <div class="col-sm-8">
@@ -110,7 +110,7 @@
                         <div class="uploader-list"></div>
                         <a class="btn btn-dark uploader-picker" data-file="business_license_img" data-type="image"><i class="fa fa-upload"></i> 选择文件</a>
                         <span class="help-block"><i class="fa fa-info-circle"></i>最大只能上传<{$Think.UPLOAD_IMAGE_SIZE}>M的图片</span>
-                        <input type="hidden" datatype="fileLen" valu="" nullmsg="请至少上传一个文件">
+                        <input type="hidden" value="" nullmsg="请至少上传一个文件">
                     </div>
                 </div>
                 <div class="hr-line-dashed"></div>
