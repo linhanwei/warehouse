@@ -24,10 +24,14 @@
             <thead>
                 <tr>
                     <th>商品名称</th>
-                    <th>品牌</th>
+                   <!-- <th>品牌</th>
                     <th>企业</th>
                     <th>生产厂家</th>
-                    <th>产地</th>
+                    <th>产地</th>-->
+                    <th>成本价</th>
+                    <th>商品价格</th>
+                    <th>库存</th>
+                    <th>仓位货架</th>
                     <th>修改时间</th>
                     <th>添加时间</th>
                     <th>操作</th>
@@ -38,10 +42,14 @@
                     {volist name='list' id='goods'}
                         <tr>
                             <td><{$goods.goods_name}></td>
-                            <td><{$goods.brand_name}></td>
+                            <td><{$goods.goods_costprice}></td>
+                            <td><{$goods.goods_price}></td>
+                            <td><{$goods.goods_storage}></td>
+                            <td><{$goods.goods_position}></td>
+                           <!-- <td><{$goods.brand_name}></td>
                             <td><{$goods.company_name}></td>
                             <td><{$goods.manufacturer}></td>
-                            <td><{$goods.produce_place}></td>
+                            <td><{$goods.produce_place}></td>-->
                             <td class="text-center"><{$goods.update_time}></td>
                             <td class="text-center"><{$goods.create_time}></td>
                             <td class="text-center">

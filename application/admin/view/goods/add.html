@@ -17,35 +17,19 @@
                         <input name="goods_name" datatype="*" nullmsg="请输入商品名称" class="form-control" type="text" placeholder="请输入商品名称" />
                     </div>
                 </div>
+                <!--
                 <div class="form-group col-sm-6">
                     <label class="col-sm-4 control-label"><code>*</code>品牌：</label>
                     <div class="col-sm-8">
                         <select name="brand_id" class="form-control">
-                            <!--<option value="">请选择</option>-->
+                            &lt;!&ndash;<option value="">请选择</option>&ndash;&gt;
                             {volist name="brankList" id="brank"}
                                 <option value="<{$brank.id}>"><{$brank.brand_name}></option>
                             {/volist}
                         </select>
                     </div>
                 </div>
-                <div class="hr-line-dashed"></div>
-                <div class="form-group col-sm-6">
-                    <label class="col-sm-4 control-label"><code>*</code>企业：</label>
-                    <div class="col-sm-8">
-                        <select name="company_id" class="form-control">
-                            <!--<option value="">请选择</option>-->
-                            {volist name="companyList" id="company"}
-                                <option value="<{$company.id}>"><{$company.name}></option>
-                            {/volist}
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group col-sm-6">
-                    <label class="col-sm-4 control-label"><code>*</code>生产厂家：</label>
-                    <div class="col-sm-8">
-                        <input type="text" name="manufacturer" datatype="*" nullmsg="请输入生产厂家" placeholder="输入生产厂家" class="form-control" >
-                    </div>
-                </div>
+                -->
                 <div class="hr-line-dashed"></div>
                 <div class="form-group col-sm-6">
                     <label class="col-sm-4 control-label"><code>*</code>成本价：</label>
@@ -60,6 +44,52 @@
                     </div>
                 </div>
                 <div class="hr-line-dashed"></div>
+                <div class="form-group col-sm-6">
+                    <label class="col-sm-4 control-label">规格：</label>
+                    <div class="col-sm-8">
+                        <input name="goods_spec" nullmsg="请输入规格" class="form-control" type="text" placeholder="请输入规格" />
+                    </div>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label class="col-sm-4 control-label">净重：</label>
+                    <div class="col-sm-8">
+                        <input name="net_weight" nullmsg="请输入净重" class="form-control" type="text" placeholder="请输入净重" />
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group col-sm-6">
+                    <label class="col-sm-4 control-label">库存：</label>
+                    <div class="col-sm-8">
+                        <input name="goods_storage" nullmsg="请输入库存" class="form-control" type="text" placeholder="请输入库存" />
+                    </div>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label class="col-sm-4 control-label">仓位货架：</label>
+                    <div class="col-sm-8">
+                        <input name="goods_position" nullmsg="请输入仓位货架" class="form-control" type="text" placeholder="请输入仓位货架" />
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+               <!--
+               <div class="form-group col-sm-6">
+                    <label class="col-sm-4 control-label"><code>*</code>企业：</label>
+                    <div class="col-sm-8">
+                        <select name="company_id" class="form-control">
+                            &lt;!&ndash;<option value="">请选择</option>&ndash;&gt;
+                            {volist name="companyList" id="company"}
+                                <option value="<{$company.id}>"><{$company.name}></option>
+                            {/volist}
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label class="col-sm-4 control-label"><code>*</code>生产厂家：</label>
+                    <div class="col-sm-8">
+                        <input type="text" name="manufacturer" datatype="*" nullmsg="请输入生产厂家" placeholder="输入生产厂家" class="form-control" >
+                    </div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                -->
                 <!--
                 <div class="form-group col-sm-6">
                     <label class="col-sm-4 control-label"><code>*</code>商品促销价格：</label>
@@ -67,7 +97,6 @@
                         <input type="text" name="goods_promotion_price" datatype="*" nullmsg="请输入商品促销价格" placeholder="输入商品促销价格" class="form-control" >
                     </div>
                 </div>
-                -->
                 <div class="form-group col-sm-6">
                     <label class="col-sm-4 control-label"><code>*</code>市场价：</label>
                     <div class="col-sm-8">
@@ -75,10 +104,11 @@
                     </div>
                 </div>
                 <div class="hr-line-dashed"></div>
+                -->
                 <div class="form-group col-sm-6">
-                    <label class="col-sm-4 control-label"><code>*</code>产地：</label>
+                    <label class="col-sm-4 control-label">产地：</label>
                     <div class="col-sm-8">
-                        <input type="text" name="produce_place" datatype="*" nullmsg="请输入产地" placeholder="输入产地" class="form-control" >
+                        <input type="text" name="produce_place" nullmsg="请输入产地" placeholder="输入产地" class="form-control" >
                     </div>
                 </div>
                 <div class="form-group col-sm-6">
@@ -121,7 +151,7 @@
                         <div class="uploader-list"></div>
                         <a class="btn btn-dark uploader-picker" data-file="goods_image" data-type="image"><i class="fa fa-upload"></i> 选择文件</a>
                         <span class="help-block"><i class="fa fa-info-circle"></i>最大只能上传<{$Think.UPLOAD_IMAGE_SIZE}>M的图片</span>
-                        <input type="hidden" datatype="fileLen" valu="" nullmsg="请至少上传一个文件">
+                        <input type="hidden"  value="" nullmsg="请至少上传一个文件">
                     </div>
                 </div>
                 <div class="hr-line-dashed"></div>

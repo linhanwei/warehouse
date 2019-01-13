@@ -23,6 +23,17 @@ class Goods extends Common
 
         $list = model('GoodsCommon')->pageList($where, self::PAGE_TOTAL);
 
+		if(empty($list->isEmpty()))
+		{
+			foreach ($list as $k => $v)
+			{
+				$where = [];
+				$where[] = ['goods_commonid', '=', $v['id']];
+				$goods_info = model('Goods')->getInfo($where, 'goods_storage,goods_position');
+				$list[$k]['goods_storage'] = isset($goods_info['goods_storage']) ? $goods_info['goods_storage'] : '';
+				$list[$k]['goods_position'] = isset($goods_info['goods_position']) ? $goods_info['goods_position'] : '';
+			}
+		}
         $this->assign('field_list', $field_list);
         $this->assign('list', $list);
         return $this->fetch('index');
@@ -65,11 +76,11 @@ class Goods extends Common
 
                     $addGoodsData['goods_commonid'] = $GoodsCommonModel->id;
                     $addGoodsData['goods_name'] = $input_arr['goods_name'];
-                    $addGoodsData['brand_id'] = $input_arr['brand_id'];
-                    $addGoodsData['goods_image'] = $input_arr['goods_image'][0];
-                    $addGoodsData['company_id'] = $GoodsCommonModel->company_id;
+                    //$addGoodsData['brand_id'] = $input_arr['brand_id'];
+                    if(isset($input_arr['goods_image'][0])) $addGoodsData['goods_image'] = $input_arr['goods_image'][0];
+                    //$addGoodsData['company_id'] = $GoodsCommonModel->company_id;
                     $addGoodsData['goods_price'] = $input_arr['goods_costprice'];
-                    $addGoodsData['goods_marketprice'] = $input_arr['goods_marketprice'];
+                    //$addGoodsData['goods_marketprice'] = $input_arr['goods_marketprice'];
                     //$addGoodsData['goods_promotion_price'] = $input_arr['goods_promotion_price'];
                     $result = $GoodsModel->addData($addGoodsData);
 
@@ -88,7 +99,7 @@ class Goods extends Common
                                 $addAttrList[$k]['goods_commonid'] = $GoodsCommonModel->id;
                                 $addAttrList[$k]['attr_id'] = $val;
                                 $addAttrList[$k]['attr_value_id'] = $attr_value_ids[$k];
-                                $addAttrList[$k]['company_id'] = $GoodsCommonModel->company_id;
+                                //$addAttrList[$k]['company_id'] = $GoodsCommonModel->company_id;
                             }
 
                             $result = model('GoodsAttrIndex')->saveAllData($addAttrList);
@@ -180,11 +191,11 @@ class Goods extends Common
                     $GoodsModel = model('Goods');
 
                     $editGoodsData['goods_name'] = $input_arr['goods_name'];
-                    $editGoodsData['brand_id'] = $input_arr['brand_id'];
-                    $editGoodsData['goods_image'] = $input_arr['goods_image'][0];
-                    $editGoodsData['company_id'] = $GoodsCommonModel->company_id;
+                    //$editGoodsData['brand_id'] = $input_arr['brand_id'];
+                    if(isset($input_arr['goods_image'][0])) $editGoodsData['goods_image'] = $input_arr['goods_image'][0];
+                    //$editGoodsData['company_id'] = $GoodsCommonModel->company_id;
 					$editGoodsData['goods_price'] = $input_arr['goods_costprice'];
-					$editGoodsData['goods_marketprice'] = $input_arr['goods_marketprice'];
+					//$editGoodsData['goods_marketprice'] = $input_arr['goods_marketprice'];
 					//$editGoodsData['goods_promotion_price'] = $input_arr['goods_promotion_price'];
                     $result = $GoodsModel->editData(array('goods_commonid' => $id), $editGoodsData);
 
@@ -208,7 +219,7 @@ class Goods extends Common
                                     $addAttrList[$k]['id'] = $goods_attr_ids[$k];
                                     $addAttrList[$k]['attr_id'] = $val;
                                     $addAttrList[$k]['attr_value_id'] = $attr_value_ids[$k];
-                                    $addAttrList[$k]['company_id'] = $GoodsCommonModel->company_id;
+                                   // $addAttrList[$k]['company_id'] = $GoodsCommonModel->company_id;
                                 }
                                 else
                                 {
@@ -216,7 +227,7 @@ class Goods extends Common
                                     $addAttrList[$k]['goods_commonid'] = $id;
                                     $addAttrList[$k]['attr_id'] = $val;
                                     $addAttrList[$k]['attr_value_id'] = $attr_value_ids[$k];
-                                    $addAttrList[$k]['company_id'] = $GoodsCommonModel->company_id;
+                                    //$addAttrList[$k]['company_id'] = $GoodsCommonModel->company_id;
                                 }
                             }
 

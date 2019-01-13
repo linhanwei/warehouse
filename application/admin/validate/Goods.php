@@ -15,10 +15,10 @@ class Goods extends Validate
     //验证规则
     protected $rule = array(
         'goods_name' => 'require|token',
-        'brand_id' => 'require',
-        'company_id' => 'require',
-        'goods_image' => 'require',
-        'goods_body' => 'require',
+        //'brand_id' => 'require',
+        //'company_id' => 'require',
+        //'goods_image' => 'require',
+        //'goods_body' => 'require',
     );
 
     // 验证提示信息
