@@ -15,7 +15,7 @@ class Company extends Common
         );
 
         $field_list = array(
-            'name' => '企业名称',
+            'name' => '供应商名称',
             'legal_person' => '法人',
             'mobile' => '手机号码',
         );
@@ -64,7 +64,7 @@ class Company extends Common
 
                 if($count > 0)
                 {
-                    $this->error('该企业已经存在!');
+                    $this->error('该供应商已经存在!');
                 }
 
                 $result = $companyModel->addData($input_arr);
@@ -99,7 +99,7 @@ class Company extends Common
 
         if(empty($id))
         {
-            $this->error('请选择需要修改的企业!');
+            $this->error('请选择需要修改的供应商!');
         }
 
         $companyModel = model('Company');
@@ -109,7 +109,7 @@ class Company extends Common
 
         if(empty($companyInfo))
         {
-            $this->error('选择的企业不存在!');
+            $this->error('选择的供应商不存在!');
         }
 
         if(request()->isPost())
@@ -124,13 +124,13 @@ class Company extends Common
             {
                 $name = input('name');
 
-                //验证企业是否已存在
+                //验证供应商是否已存在
                 $countWhere['id'] = array('neq', $id);
                 $countWhere['name'] = $name;
                 $count = $companyModel->getCount($countWhere);
                 if($count > 0)
                 {
-                    $this->error('企业名称已经存在!');
+                    $this->error('供应商名称已经存在!');
                 }
 
                 //删除图片数据
@@ -174,7 +174,7 @@ class Company extends Common
 
         if(empty($id))
         {
-            $this->error('请选择需要删除的企业!');
+            $this->error('请选择需要删除的供应商!');
         }
 
         $companyModel = model('Company');
@@ -184,7 +184,7 @@ class Company extends Common
 
         if(empty($companyInfo))
         {
-            $this->error('选择的企业不存在!');
+            $this->error('选择的供应商不存在!');
         }
 
         $result = $companyModel->delData(array('id'=>$id));

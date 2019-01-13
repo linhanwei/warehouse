@@ -39,7 +39,7 @@ class Company extends Validate
 
     // 验证提示信息
     protected $message = array(
-        'name.require' => '企业名称不能为空',
+        'name.require' => '供应商名称不能为空',
         'legal_person.require' => '法人不能为空',
         'reg_capital.require' => '注册资本不能为空',
         'business_circles_number.require' => '工商注册号不能为空',

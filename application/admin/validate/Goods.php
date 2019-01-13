@@ -25,7 +25,7 @@ class Goods extends Validate
     protected $message = array(
         'goods_name.require' => '商品名称不能为空',
         'brand_id.require' => '请选择品牌',
-        'company_id.require' => '请选择企业',
+        'company_id.require' => '请选择供应商',
         'goods_image.require' => '请选择商品正面图片',
         'goods_body.require' => '商品详情不能为空',
     );

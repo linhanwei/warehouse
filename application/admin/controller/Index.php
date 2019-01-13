@@ -96,9 +96,9 @@ class Index extends Common
     {
         $menuList = array(
             array(
-                'name' => '企业管理','class' => '','url' => '',
+                'name' => '供应商管理','class' => '','url' => '',
                 'children'=> array(
-                    array('name' => '企业列表','class' => '','auth' => 'admin/Company/index', 'url' => 'company/index',
+                    array('name' => '供应商列表','class' => '','auth' => 'admin/Company/index', 'url' => 'company/index',
                         'children'=> array(
                             //array('name' => '权限管理1','class' => '','auth' => 'admin/AdminAuthority/index','url' =>'/admin_authority/index',),
                         ),
